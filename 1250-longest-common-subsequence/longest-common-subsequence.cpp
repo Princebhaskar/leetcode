@@ -22,9 +22,26 @@ public:
         }
         return dp[0][0];
     }
+    int solveMem(string s1, string s2){
+        int n = s1.size();
+        int m = s2.size();
+        vector<int>prev(m+1,0);
+        vector<int>curr(m+1,0);
+        for(int i=1;i<=n;i++){
+            for(int j=1;j<=m;j++){
+                if(s1[i-1]==s2[j-1]){
+                    curr[j] = 1+ prev[j-1];
+                }
+                else curr[j] = max(prev[j] , curr[j-1]);
+            }
+            prev = curr;
+        }
+        return prev[m];
+    }
     int longestCommonSubsequence(string text1, string text2) {
         vector<vector<int>>dp(text1.size()+1, vector<int>(text2.size()+1, 0));
         //return solve(text1,text2,0,0,dp);
-        return solveTab(text1 , text2, dp);
+        //return solveTab(text1 , text2, dp);
+        return solveMem(text1, text2);
     }
 };
