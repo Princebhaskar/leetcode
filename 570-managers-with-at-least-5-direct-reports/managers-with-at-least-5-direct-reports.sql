@@ -4,7 +4,7 @@ SELECT id , name
 FROM Employee 
 ) AS temp
 WHERE (
-    SELECT COUNT(*)
+    SELECT COUNT(*)>=5
     FROM Employee e
     WHERE e.managerId = temp.id
-)>=5;
+);
