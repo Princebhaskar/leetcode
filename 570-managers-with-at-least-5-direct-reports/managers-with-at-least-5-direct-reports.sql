@@ -1,10 +1,6 @@
-SELECT temp.name 
-FROM(
-SELECT id , name 
-FROM Employee 
-) AS temp
-WHERE (
-    SELECT COUNT(*)>=5
-    FROM Employee e
-    WHERE e.managerId = temp.id
-);
+SELECT e1.name 
+FROM Employee e1
+LEFT JOIN Employee e2
+ON e1.id = e2.managerId
+GROUP BY e1.id
+HAVING COUNT(e2.managerId) >=5;
