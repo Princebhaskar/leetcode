@@ -1,6 +1,6 @@
 SELECT p.product_id,
 ROUND(IF(SUM(u.units) IS NULL, 0,
-SUM(p.price*u.units)*1.0/ SUM(u.units)), 2)
+SUM(p.price*u.units)/ SUM(u.units)), 2)
 AS average_price
 FROM Prices p 
 LEFT JOIN UnitsSold u
